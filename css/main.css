@@ -1,28 +1,49 @@
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, h3, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+}
+
 body {
-  background-image: url(../assets/tetris_background.jpg);
-  width: 100%;
-  text-align: center;
-}
-
-#tetris_game {
-  background-color: white;
-  margin-top: 100px;
-  display: inline;
-  border: 5px solid black;
-}
-
-.footer-container {
-  background-color: white;
-  margin: 0 auto;
-  width: 200px;
-  height: 40px;
-  border: 1px solid black;
-  border-radius: 5px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  background-image: url(../assets/tetris_background.jpg);
 }
 
-i {
-  margin-top: 10px;
-  font-size: 20px;
+#tetris {
+  background-color: grey;
+}
+
+.canvas-container {
+  display:block;
+  /* margin: 0 auto; */
+  margin-top: 100px;
+}
+
+.canvas-container > * {
+	display:block;
+	margin:0 auto;
+	border: 5px solid black;
+}
+
+.canvas-container > button {
+  font-family:Courier;
+	font-size:30px;
+	font-weight:bold;
+	border:none;
+	background-color:#ffffff;
+	color:#000000;
+  margin: 20px auto;
 }

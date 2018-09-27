@@ -4,24 +4,38 @@
     <meta charset="utf-8">
     <title>Tetris!</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/add_ons.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
   </head>
   <body>
 
-    <div class="score-board-container"></div>
+    <div class="score-board-container">
+      Score:
+      <span>Render score here</span>
+    </div>
 
     <div class="canvas-container">
-      <canvas id="tetris_game" width="240" height="400"></canvas>      
+      <canvas id="tetris" width="300" height="600"></canvas>
+      <button type="button" id="start_game">Start</button>
+
+      <div class="footer-container">
+        <a href="https://www.linkedin.com/in/raf-garcia-engr/">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a href="https://github.com/rafgarciaa">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+
     </div>
 
-    <div class="footer-container">
-      <a href="https://www.linkedin.com/in/raf-garcia-engr/">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-
-      <a href="https://github.com/rafgarciaa">
-        <i class="fab fa-github"></i>
-      </a>
+    <div class="next-piece-container">
+      Next piece:
+      <span>Render next piece item here</span>
     </div>
+
+    <script src="./js/tetris.js"></script>
   </body>
 </html>
