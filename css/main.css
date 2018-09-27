@@ -1,0 +1,28 @@
+body {
+  background-image: url(../assets/tetris_background.jpg);
+  width: 100%;
+  text-align: center;
+}
+
+#tetris_game {
+  background-color: white;
+  margin-top: 100px;
+  display: inline;
+  border: 5px solid black;
+}
+
+.footer-container {
+  background-color: white;
+  margin: 0 auto;
+  width: 200px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+i {
+  margin-top: 10px;
+  font-size: 20px;
+}
