@@ -38,12 +38,16 @@ body {
 	border: 5px solid black;
 }
 
-.canvas-container > button {
-  font-family:Courier;
-	font-size:30px;
-	font-weight:bold;
-	border:none;
-	background-color:#ffffff;
-	color:#000000;
+.canvas-container > input {
+  font-family: Courier;
+	font-size: 30px;
+	font-weight: bold;
+	border: none;
+	background-color: #ffffff;
+	color: #000000;
   margin: 20px auto;
+}
+
+.canvas-container > input:hover {
+  background-color: #e4f0f5;
 }

@@ -1,42 +1,42 @@
-let canvas = document.getElementById("tetris");
-let ctx = canvas.getContext('2d');
-ctx.scale(30, 30);
+import Board from './board.js';
 
-ctx.fillStyle = '#000000';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
+document.addEventListener('DOMContentLoaded', () => {
+  const canvas = document.getElementById('tetris');
+  const ctx = canvas.getContext('2d');
 
-const grid = [
-  [0, 0, 0],
-  [1, 1, 1],
-  [0, 1, 0],
-];
+  ctx.scale(30, 30);
 
-let draw = () => {
-  drawGrid(player.grid, player.pos);
-};
+  ctx.fillStyle = 'grey';
+  ctx.fillRect(0, 0, canvas.width, canvas.width);
 
-let drawGrid = (grid, offset) => {
-  grid.forEach( (row, y) => {
-    row.forEach( (value, x) => {
-      if (value !== 0) {
-        ctx.fillStyle = 'red';
-        ctx.fillRect(x + offset.x,
-                     y + offset.y,
-                     1, 1);
-      }
-    });
-  });
-};
+  let board = new Board(ctx);
+  board.drawPiece();
 
-let update = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  draw();
-  requestAnimationFrame(update);
-};
-
-const player = {
-  pos: {x: 5, y: 5},
-  grid: grid,
-};
-
-update();
+  // let gameRun = false;
+  // const game = new Game();
+  //
+  // // selecting the button
+  // const button = document.getElementById('start_game');
+  //
+  // button.onclick = () => {
+  //   // toggleButton(button);
+  //   gameRun = true;
+  //
+  //   if (gameRun) {
+  //     game.update(); // re-renders the grid
+  //   }
+  // };
+  //
+  // document.addEventListener('keydown', e => { // listens for player input
+  //   if (e.keyCode === 37) {
+  //     game.player.pos.x--;
+  //   } else if (e.keyCode === 39) {
+  //     game.player.pos.x++;
+  //   } else if (e.keyCode === 40) {
+  //     game.player.playerDrop();
+  //     game.dropCounter = 0;
+  //   }
+  // });
+  //
+  // window.merge = game.grid.merge;
+});
