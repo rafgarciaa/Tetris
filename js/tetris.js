@@ -1,4 +1,5 @@
 import Board from './board.js';
+import Player from './player.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('tetris');
@@ -10,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ctx.fillRect(0, 0, canvas.width, canvas.width);
 
   let board = new Board(ctx);
-  board.drawPiece();
+  let player = new Player();
+  board.drawPiece(player.pos);
 
   // let gameRun = false;
   // const game = new Game();

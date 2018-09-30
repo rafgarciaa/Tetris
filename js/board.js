@@ -8,12 +8,14 @@ export default class Board {
     ];
   }
 
-  drawPiece() {
+  // offset === playerPos
+
+  drawPiece(playerPos) {
     this.piece.forEach( (row, y) => {
       row.forEach( (value, x) => {
         if (value !== 0) {
           this.ctx.fillStyle = 'blue';
-          this.ctx.fillRect(x, y, 1, 1);
+          this.ctx.fillRect(x + playerPos.x, y + playerPos.y, 1, 1);
         }
       });
     });
