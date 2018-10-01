@@ -25,4 +25,6 @@ export default class Player {
       this.pos.x -= dir;
     }
   }
+
+  // end of class
 }
