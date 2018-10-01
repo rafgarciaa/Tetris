@@ -7,12 +7,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ctx.scale(30, 30);
 
-  ctx.fillStyle = 'grey';
-  ctx.fillRect(0, 0, canvas.width, canvas.width);
+  // ctx.fillStyle = 'grey';
+  // ctx.fillRect(0, 0, canvas.width, canvas.width);
 
-  let board = new Board(ctx);
   let player = new Player();
+  let board = new Board(canvas.width, canvas.height, ctx, player);
   board.drawPiece(player.pos);
+
+  window.board = board;
+  window.player = player;
 
   // let gameRun = false;
   // const game = new Game();
