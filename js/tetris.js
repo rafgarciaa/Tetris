@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // for testing purposes only END
 
   document.addEventListener('keydown', e => { // listens for player input
+    e.preventDefault();
     if (e.keyCode === 37) { // left
       board.player.move(-1);
     } else if (e.keyCode === 39) { // right
