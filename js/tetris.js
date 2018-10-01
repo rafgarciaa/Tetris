@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let player = new Player();
   let board = new Board(canvas.width, canvas.height, ctx, player);
   board.drawPiece(player.pos);
+  board.updateBoard();
 
   window.board = board;
   window.player = player;
@@ -31,17 +32,18 @@ document.addEventListener('DOMContentLoaded', () => {
   //     game.update(); // re-renders the grid
   //   }
   // };
-  //
-  // document.addEventListener('keydown', e => { // listens for player input
-  //   if (e.keyCode === 37) {
-  //     game.player.pos.x--;
-  //   } else if (e.keyCode === 39) {
-  //     game.player.pos.x++;
-  //   } else if (e.keyCode === 40) {
-  //     game.player.playerDrop();
-  //     game.dropCounter = 0;
-  //   }
-  // });
-  //
+
+  document.addEventListener('keydown', e => { // listens for player input
+    if (e.keyCode === 37) { // left
+      board.player.pos.x--;
+    } else if (e.keyCode === 39) { // right
+      board.player.pos.x++;
+    }
+    // else if (e.keyCode === 40) { // drop
+    //   // board.player.playerDrop();
+    //   board.dropCounter = 0;
+    // }
+  });
+
   // window.merge = game.grid.merge;
 });

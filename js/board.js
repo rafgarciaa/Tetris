@@ -10,8 +10,14 @@ export default class Board {
       [0, 1, 0],
     ];
 
-    this.draw = this.draw.bind(this);
+    this.lastTime = 0;
+    this.dropCounter = 0;
+    this.dropInterval = 1000;
+
+    // this.draw = this.draw.bind(this);
     this.drawPiece = this.drawPiece.bind(this);
+    this.dropPiece = this.dropPiece.bind(this);
+    this.updateBoard = this.updateBoard.bind(this);
   }
 
   clearBoard() {
@@ -19,10 +25,10 @@ export default class Board {
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  draw() {
-    this.clearBoard();
-    this.drawPiece(this.player.pos);
-  }
+  // draw() {
+  //   this.clearBoard();
+  //   this.drawPiece(this.player.pos);
+  // }
 
   // offset === playerPos
   drawPiece(playerPos) {
@@ -36,9 +42,24 @@ export default class Board {
     });
   }
 
+  dropPiece(time) {
+    // debugger
+    const deltaTime = time - this.lastTime;
+    this.lastTime = time;
+
+    this.dropCounter += deltaTime;
+    if (this.dropCounter > this.dropInterval) {
+      this.player.pos.y++;
+      this.dropCounter = 0;
+    }
+  }
+
   // update = updateBoard
-  updateBoard() {
-    this.draw();
+  updateBoard(time = 0) {
+    this.dropPiece(time);
+    // this.draw();
+    this.clearBoard();
+    this.drawPiece(this.player.pos);
     requestAnimationFrame(this.updateBoard);
   }
 }
