@@ -1,13 +1,14 @@
 // import Piece from './piece.js';
 
 export default class Player {
-  constructor(collide, merge, rotatePiece) {
+  constructor(collide, merge, rotatePiece, clearGrid) {
     this.collide = collide;
     this.merge = merge;
     this.rotatePiece = rotatePiece;
+    this.clearGrid = clearGrid;
     this.pos = { x: 3, y: 0 };
-    // this.piece = new Piece();
     this.reset = this.reset.bind(this);
+    this.score = 0;
   }
 
   drop() {
@@ -45,6 +46,7 @@ export default class Player {
 
   reset() {
     this.pos = { x: 3, y: 0 };
+    this.clearGrid();
   }
 
   // end of class

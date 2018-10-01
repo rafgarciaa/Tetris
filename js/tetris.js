@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (gameRun) {
       board.updateBoard(); // re-renders the grid
+      board.updateScore();
     }
   };
 

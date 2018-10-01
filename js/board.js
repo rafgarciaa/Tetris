@@ -24,17 +24,21 @@ export default class Board {
     this.dropInterval = 1000;
 
     this.collide = this.collide.bind(this);
+    this.clearGrid = this.clearGrid.bind(this);
     // this.draw = this.draw.bind(this);
     // this.drawMatrix = this.drawMatrix.bind(this);
     this.merge = this.merge.bind(this);
     this.rotatePiece = this.rotatePiece.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
+    // this.updateScore = this.updateScore.bind(this);
 
     this.player = new Player(
-      this.collide,
-      this.merge,
-      this.rotatePiece
+        this.collide,
+        this.merge,
+        this.rotatePiece,
+        this.clearGrid
     );
+
     this.piece = new Piece().generatePiece();
     this.createGrid(10, 20);
   }
@@ -59,6 +63,15 @@ export default class Board {
       this.grid.push(new Array(w).fill(0));
     }
     return this.grid;
+  }
+
+  clearGrid() {
+    if (this.collide()) {
+      this.grid.forEach( row => row.fill(0));
+      this.player.score = 0;
+      // this.updateScore();
+    }
+    this.gridSweep();
   }
 
   clearBoard() {
@@ -100,6 +113,24 @@ export default class Board {
     }
   }
 
+  gridSweep() {
+    let rowCount = 1;
+    outer: for (let j = this.grid.length - 1; j > 0; j--) {
+      for (let i = 0; i < this.grid[j].length; i++) {
+        if (this.grid[j][i] === 0) {
+          continue outer;
+        }
+      }
+
+      const row = this.grid.splice(j, 1)[0].fill(0);
+      this.grid.unshift(row);
+      j++;
+
+      this.player.score += rowCount * 100;
+      rowCount *= 2;
+    }
+  }
+
   merge() {
     this.piece.forEach( (row, y) => {
       row.forEach( (value, x) => {
@@ -138,7 +169,12 @@ export default class Board {
     this.dropPiece(time);
 
     this.draw();
+    this.updateScore();
     requestAnimationFrame(this.updateBoard);
+  }
+
+  updateScore() {
+    document.getElementById('score').innerText = this.player.score;
   }
 
   // end of class
