@@ -19,7 +19,7 @@ span, article, footer, time, small {
 body {
   display: flex;
   justify-content: center;
-  background-image: url(../assets/tetris_background.jpg);
+  background-image: url(../assets/tetris.jpg);
 }
 
 #tetris {
