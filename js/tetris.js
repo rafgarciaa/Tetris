@@ -1,5 +1,4 @@
 import Board from './board.js';
-import Player from './player.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('tetris');
@@ -13,11 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
   ctx.textAlign = "center";
   ctx.fillText('Press Start to Play', (canvas.width/30)/2, (canvas.width/30)/2);
 
-
   // debugger
   let gameRun = false;
-  let player = new Player();
-  let board = new Board(canvas.width, canvas.height, ctx, player);
+  let board = new Board(canvas.width, canvas.height, ctx);
 
   // selecting the button
   const button = document.getElementById('start_game');
@@ -31,18 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // for testing purposes only START
   window.board = board;
-  window.player = player;
+  window.player = board.player;
+  window.board.merge = board.merge;
   // for testing purposes only END
 
   document.addEventListener('keydown', e => { // listens for player input
     if (e.keyCode === 37) { // left
-      board.player.pos.x--;
+      board.player.playerMove(-1);
     } else if (e.keyCode === 39) { // right
-      board.player.pos.x++;
+      board.player.playerMove(1);
+    } else if (e.keyCode === 40) { // drop
+      board.player.playerDrop();
+      board.dropCounter = 0;
     }
-    // else if (e.keyCode === 40) { // drop
-    //   // board.player.playerDrop();
-    //   board.dropCounter = 0;
-    // }
   });
 });

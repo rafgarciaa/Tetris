@@ -1,9 +1,12 @@
+import Player from './player.js';
+
 export default class Board {
-  constructor(width, height, ctx, player) {
+  constructor(width, height, ctx) {
     this.width = width;
     this.height = height;
     this.ctx = ctx;
-    this.player = player;
+    this.grid = [];
+
     this.piece = [
       [0, 0, 0],
       [1, 1, 1],
@@ -14,10 +17,34 @@ export default class Board {
     this.dropCounter = 0;
     this.dropInterval = 1000;
 
-    // this.draw = this.draw.bind(this);
-    this.drawPiece = this.drawPiece.bind(this);
-    this.dropPiece = this.dropPiece.bind(this);
+    this.collide = this.collide.bind(this);
+    this.merge = this.merge.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
+
+    this.player = new Player(this.collide, this.merge);
+    this.createGrid(10, 20);
+  }
+
+  collide() {
+    const [p, o] = [this.piece, this.player.pos];
+
+    for (let y = 0; y < p.length; y++) {
+      for (let x = 0; x < p[y].length; x++) {
+        if (p[y][x] !== 0 &&
+            (this.grid[y + o.y] &&
+            this.grid[y + o.y][x + o.x]) !== 0) {
+              return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  createGrid(w, h) {
+    while (h--) {
+      this.grid.push(new Array(w).fill(0));
+    }
+    return this.grid;
   }
 
   clearBoard() {
@@ -25,42 +52,49 @@ export default class Board {
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  // draw() {
-  //   this.clearBoard();
-  //   this.drawPiece(this.player.pos);
-  // }
+  draw() {
+    this.clearBoard();
+    this.drawMatrix(this.grid, { x: 0, y: 0 });
+    this.drawMatrix(this.piece, this.player.pos);
+  }
 
-  // offset === playerPos
-  drawPiece(playerPos) {
-    this.piece.forEach( (row, y) => {
+  // draws either a single piece or the actual grid
+  drawMatrix(matrix, offset) {
+    matrix.forEach( (row, y) => {
       row.forEach( (value, x) => {
         if (value !== 0) {
           this.ctx.fillStyle = 'blue';
-          this.ctx.fillRect(x + playerPos.x, y + playerPos.y, 1, 1);
+          this.ctx.fillRect(x + offset.x, y + offset.y, 1, 1);
         }
       });
     });
   }
 
   dropPiece(time) {
-    // debugger
     const deltaTime = time - this.lastTime;
     this.lastTime = time;
 
     this.dropCounter += deltaTime;
     if (this.dropCounter > this.dropInterval) {
-      this.player.pos.y++;
+      this.player.playerDrop();
       this.dropCounter = 0;
     }
   }
 
-  // update = updateBoard
+  merge() {
+    this.piece.forEach( (row, y) => {
+      row.forEach( (value, x) => {
+        if (value !== 0) {
+          this.grid[y + this.player.pos.y][x + this.player.pos.x] = value;
+        }
+      });
+    });
+  }
+
   updateBoard(time = 0) {
-    this.drawPiece(this.player.pos);
     this.dropPiece(time);
-    // this.draw();
-    this.clearBoard();
-    this.drawPiece(this.player.pos);
+
+    this.draw();
     requestAnimationFrame(this.updateBoard);
   }
 }
