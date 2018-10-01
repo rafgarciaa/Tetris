@@ -24,10 +24,17 @@ export default class Board {
     this.dropInterval = 1000;
 
     this.collide = this.collide.bind(this);
+    // this.draw = this.draw.bind(this);
+    // this.drawMatrix = this.drawMatrix.bind(this);
     this.merge = this.merge.bind(this);
+    this.rotatePiece = this.rotatePiece.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
 
-    this.player = new Player(this.collide, this.merge);
+    this.player = new Player(
+      this.collide,
+      this.merge,
+      this.rotatePiece
+    );
     this.piece = new Piece().generatePiece();
     this.createGrid(10, 20);
   }
@@ -88,7 +95,7 @@ export default class Board {
 
     this.dropCounter += deltaTime;
     if (this.dropCounter > this.dropInterval) {
-      this.player.playerDrop();
+      this.player.drop();
       this.dropCounter = 0;
     }
   }
@@ -101,6 +108,30 @@ export default class Board {
         }
       });
     });
+
+    this.piece = new Piece().generatePiece();
+  }
+
+  rotatePiece(dir) {
+    for (let j = 0; j < this.piece.length; j++) {
+      for (let i = 0; i < j; i++) {
+        [
+          this.piece[i][j],
+          this.piece[j][i],
+        ] = [
+          this.piece[j][i],
+          this.piece[i][j],
+        ];
+      }
+    }
+
+    if (dir > 0) {
+      this.piece.forEach( row => row.reverse() );
+    } else {
+      this.piece.reverse();
+    }
+
+    this.player.rotate(this.piece, dir);
   }
 
   updateBoard(time = 0) {
@@ -109,4 +140,6 @@ export default class Board {
     this.draw();
     requestAnimationFrame(this.updateBoard);
   }
+
+  // end of class
 }

@@ -34,12 +34,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('keydown', e => { // listens for player input
     if (e.keyCode === 37) { // left
-      board.player.playerMove(-1);
+      board.player.move(-1);
     } else if (e.keyCode === 39) { // right
-      board.player.playerMove(1);
+      board.player.move(1);
     } else if (e.keyCode === 40) { // drop
-      board.player.playerDrop();
+      board.player.drop();
       board.dropCounter = 0;
+    } else if (e.keyCode === 83) {
+      board.rotatePiece(-1);
+    } else if (e.keyCode === 68) {
+      board.rotatePiece(1);
     }
   });
 });
