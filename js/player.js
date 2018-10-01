@@ -5,8 +5,9 @@ export default class Player {
     this.collide = collide;
     this.merge = merge;
     this.rotatePiece = rotatePiece;
-    this.pos = { x: 5, y: 5 };
+    this.pos = { x: 3, y: 0 };
     // this.piece = new Piece();
+    this.reset = this.reset.bind(this);
   }
 
   drop() {
@@ -15,7 +16,7 @@ export default class Player {
     if (this.collide()) {
       this.pos.y--;
       this.merge();
-      this.pos.y = 0;
+      this.reset();
     }
   }
 
@@ -40,6 +41,10 @@ export default class Player {
         return;
       }
     }
+  }
+
+  reset() {
+    this.pos = { x: 3, y: 0 };
   }
 
   // end of class
