@@ -56,6 +56,7 @@ export default class Board {
 
   // update = updateBoard
   updateBoard(time = 0) {
+    this.drawPiece(this.player.pos);
     this.dropPiece(time);
     // this.draw();
     this.clearBoard();
