@@ -8,7 +8,6 @@ export default class Board {
     this.ctx = ctx;
     this.nextPieceCtx = nextPieceCtx;
     this.grid = [];
-    this.nextPieceGrid = [];
 
     this.colors = [
       null,
@@ -23,7 +22,7 @@ export default class Board {
 
     this.lastTime = 0;
     this.dropCounter = 0;
-    this.dropInterval = 1000;
+    this.dropInterval = 500;
 
     this.collide = this.collide.bind(this);
     this.clearGrid = this.clearGrid.bind(this);

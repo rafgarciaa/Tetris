@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       console.table(board.grid);
-      console.table(board.nextPieceGrid);
     }
   });
 
