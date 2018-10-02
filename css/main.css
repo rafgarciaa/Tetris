@@ -20,6 +20,7 @@ body {
   display: flex;
   justify-content: center;
   background-image: url(../assets/tetris.jpg);
+  background-size: cover;
 }
 
 #tetris {

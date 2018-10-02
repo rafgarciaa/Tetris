@@ -1,14 +1,22 @@
 .score-board-container {
   margin-right: 50px;
-  background-color: white;
   border: 5px solid #949494;
   border-radius: 5px;
   width: 200px;
   height: 80px;
-  margin-top: 100px;
+  margin-top: 185px;
+}
+
+div {
+  color: white;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
+  line-height: 35px;
+}
+
+li {
+  list-style: none;
 }
 
 .footer-container {
@@ -35,13 +43,14 @@
 
 .next-piece-container {
   margin-left: 50px;
-  background-color: white;
   border: 5px solid #949494;
   border-radius: 5px;
   width: 200px;
   height: 200px;
-  margin-top: 100px;
-  text-align: center;
-  text-transform: uppercase;
+  margin-top: 185px;
+}
+
+#score {
   font-weight: bold;
+  font-size: 22px;
 }

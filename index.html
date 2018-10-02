@@ -5,15 +5,17 @@
     <title>Tetris!</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/add_ons.css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/rafgarciaa/kingDOM/0035d3f5/lib/kingDOM.js"></script>
     <link rel="icon" type="image/png" href="./assets/favicon.png">
 
   </head>
   <body>
 
     <div class="score-board-container">
-      Score:
-      <span id="score"></span>
+      <div>Score:</div>
+      <div id="score">0</div>
     </div>
 
     <div class="canvas-container">
@@ -32,8 +34,13 @@
     </div>
 
     <div class="next-piece-container">
-      Next piece:
-      <span>Render next piece item here</span>
+      <label>Instructions:</label>
+      <ul>
+        <li>→ to move right</li>
+        <li>← to move left</li>
+        <li>s / d to rotate</li>
+        <li>↓ to drop the tile</li>
+      </ul>
     </div>
 
     <script src="./assets/bundle.js"></script>
