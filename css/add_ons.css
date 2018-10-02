@@ -12,18 +12,13 @@ li {
 }
 
 p {
-  color: black;
+  color: white;
   text-align: center;
   line-height: 55px;
   text-transform: none;
   font-size: 20px;
   font-family: 'Libre Baskerville', serif;
   font-style: italic;
-}
-
-p:hover {
-  line-height: 65px;
-  color:
 }
 
 /* LEFT PANE START */
@@ -48,7 +43,7 @@ p:hover {
   border: 5px solid #949494;
   border-radius: 5px;
   width: 200px;
-  height: 150px;
+  height: 180px;
   margin-top: 50px;
 }
 /* LEFT PANE END */
@@ -57,7 +52,7 @@ p:hover {
 
 /* FOOTER START */
 .footer-container {
-  background-color: white;
+  background-image: url(../assets/stars.gif);
   margin: 20px auto;
   width: 270px;
   height: 50px;
@@ -65,11 +60,7 @@ p:hover {
   border-radius: 5px;
 }
 
-.footer-container:hover {
-  width: 280px;
-  height: 60px;
-  background-color: #99cbee;
-}
+
 /* FOOTER END */
 
 
@@ -117,7 +108,65 @@ p:hover {
   color: #007bff;
 }
 
-.link-item.portfolio:hover {
+.link-item.angellist:hover {
   color: red;
 }
 /* RIGHT PANE END */
+
+
+/* WEBKIT STUFF */
+figure {
+  margin: 0;
+}
+
+/* credit */
+figcaption {
+  position: relative;
+}
+
+figure.cc-effect p.footer-credit {
+  -webkit-transition: opacity 1s, -webkit-transform 1s;
+  transition: opacity 1s, -webkit-transform 1s;
+  transition: opacity 1s, transform 1s;
+  transition: opacity 1s, transform 1s, -webkit-transform 1s;
+}
+
+figure:hover p.footer-credit {
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  transition: transform 0.35s, -webkit-transform 0.35s;
+  opacity: 0;
+}
+
+/* description */
+figure.cc-effect p.footer-description {
+  position: absolute;
+  top: 0;
+  margin-left: 6px;
+}
+
+/* this chunk hides the text before hover */
+figure.cc-effect p.footer-description {
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  transition: transform 0.35s, -webkit-transform 0.35s;
+  opacity: 0;
+}
+
+/* this chunk makes text show in a smooth way */
+figure.cc-effect p.footer-description {
+  -webkit-transition: opacity 0.75s, -webkit-transform 0.75s;
+  transition: opacity 0.75s, -webkit-transform 0.75s;
+  transition: opacity 0.75s, transform 0.75s;
+  transition: opacity 0.75s, transform 0.75s, -webkit-transform 0.75s;
+}
+
+/* this chunk shows the text */
+figure.cc-effect:hover p.footer-description {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  color: #fff;
+}

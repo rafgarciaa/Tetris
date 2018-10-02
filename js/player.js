@@ -1,4 +1,4 @@
-// import Piece from './piece.js';
+import Piece from './piece.js';
 
 export default class Player {
   constructor(collide, merge, rotatePiece, clearGrid) {
@@ -9,6 +9,9 @@ export default class Player {
     this.pos = { x: 3, y: 0 };
     this.reset = this.reset.bind(this);
     this.score = 0;
+    this.nextPiece = new Piece().generatePiece();
+
+    this.createNextPiece = this.createNextPiece.bind(this);
   }
 
   drop() {
@@ -29,10 +32,14 @@ export default class Player {
     }
   }
 
+  createNextPiece() {
+    this.nextPiece = new Piece().generatePiece();
+  }
+
   rotate(piece, dir) {
     const pos = this.pos.x;
     let offset = 1;
-    while(this.collide()) {
+    while (this.collide()) {
       this.pos.x += offset;
       offset = -(offset + (offset > 0 ? 1 : -1));
 

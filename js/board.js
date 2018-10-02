@@ -21,7 +21,7 @@ export default class Board {
 
     this.lastTime = 0;
     this.dropCounter = 0;
-    this.dropInterval = 500;
+    this.dropInterval = 1000;
 
     this.collide = this.collide.bind(this);
     this.clearGrid = this.clearGrid.bind(this);
@@ -40,6 +40,7 @@ export default class Board {
     );
 
     this.piece = new Piece().generatePiece();
+    this.nextPiece = new Piece().generatePiece();
     this.createGrid(10, 20);
   }
 
@@ -95,8 +96,6 @@ export default class Board {
           imageTag.src = this.colors[value];
           this.ctx.drawImage(imageTag, x + offset.x , y + offset.y , 1, 1);
 
-          // this.ctx.fillStyle = 'blue';
-          // this.ctx.fillRect(x + offset.x, y + offset.y, 1, 1);
         }
       });
     });
@@ -140,7 +139,8 @@ export default class Board {
       });
     });
 
-    this.piece = new Piece().generatePiece();
+    this.player.createNextPiece();
+    this.piece = this.player.nextPiece;
   }
 
   rotatePiece(dir) {
@@ -167,7 +167,6 @@ export default class Board {
 
   updateBoard(time = 0) {
     this.dropPiece(time);
-
     this.draw();
     this.updateScore();
     requestAnimationFrame(this.updateBoard);

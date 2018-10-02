@@ -1,41 +1,48 @@
 import Board from './board.js';
 
-// window.addEventListener("keydown", function(e) {
-//     // space and arrow keys
-//     if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-//         e.preventDefault();
-//     }
-// }, false);
+window.addEventListener("keydown", function(e) {
+    // space, arrow keys and enter
+    if([13, 32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false);
 
 document.addEventListener('DOMContentLoaded', () => {
-  const canvas = document.getElementById('tetris');
-  const ctx = canvas.getContext('2d');
-  ctx.scale(30, 30);
-
-  // ctx.fillStyle = 'black';
-  // ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.font = "1px serif";
-  ctx.fillStyle = "white";
-  ctx.textAlign = "center";
-  ctx.fillText('Press Enter to Play', (canvas.width/30)/2, (canvas.width/30)/2);
-  $l('canvas').attr('style', "background: url('./assets/stars.gif') no-repeat; background-size: cover;");
+  const boardCanvas = document.getElementById('tetris');
+  const nextPieceCanvas = document.getElementById('next-piece');
+  const boardCtx = boardCanvas.getContext('2d');
+  boardCtx.scale(30, 30);
 
   let gameRun = false;
-  let board = new Board(canvas.width, canvas.height, ctx);
+  let board = new Board(boardCanvas.width, boardCanvas.height, boardCtx);
+
+  boardCtx.font = "1px serif";
+  boardCtx.fillStyle = "white";
+  boardCtx.textAlign = "center";
+  boardCtx.fillText(
+    'Press Enter to Play',
+    (boardCanvas.width/30) / 2,
+    (boardCanvas.width/30) / 2
+  );
+  // board background
+  $l('#tetris').attr(
+    'style',
+    "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
+  );
+
+  // next piece background
+  $l('#next-piece').attr(
+    'style',
+    "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
+  );
 
   document.addEventListener('keydown', e => {
     if (e.keyCode === 13 && !gameRun) {
       gameRun = true;
+
       if (gameRun) {
         board.updateBoard(); // re-renders the grid
         board.updateScore();
-      } else {
-        gameRun = false;
-        ctx.font = "1px serif";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText('Paused', (canvas.width/30)/2, (canvas.width/30)/2);
-        $l('canvas').attr('style', "background: url('./assets/stars.gif') no-repeat; background-size: cover;");
       }
     }
   });
