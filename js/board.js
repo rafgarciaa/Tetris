@@ -110,12 +110,18 @@ export default class Board {
   drawNextPiece() {
     this.nextPiece.forEach( (row, y) => {
       row.forEach( (value, x) => {
-        if ( value !== 0) {
+        if (value !== 0 && value !== 7) {
 
           let imageTag = document.createElement('img');
           imageTag.src = this.colors[value];
-          this.nextPieceCtx.drawImage(imageTag, x + 2, y, 1, 1);
+          this.nextPieceCtx.drawImage(imageTag, x + 1, y, 1, 1);
 
+        }
+
+        if (value === 7) {
+          let imageTag = document.createElement('img');
+          imageTag.src = this.colors[value];
+          this.nextPieceCtx.drawImage(imageTag, x + 2, y + 0.5, 1, 1);
         }
       });
     });

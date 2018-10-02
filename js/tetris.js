@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const nextPieceCanvas = document.getElementById('next-piece');
   const nextPieceCtx = nextPieceCanvas.getContext('2d');
-  nextPieceCtx.scale(30, 30);
+  nextPieceCtx.scale(35, 35);
 
   let gameRun = false;
   let board = new Board(boardCanvas.width, boardCanvas.height, boardCtx, nextPieceCtx);
