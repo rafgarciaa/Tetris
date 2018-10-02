@@ -5,7 +5,7 @@
     <title>Tetris!</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/add_ons.css">
-
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <script src="https://cdn.rawgit.com/rafgarciaa/kingDOM/0035d3f5/lib/kingDOM.js"></script>
     <link rel="icon" type="image/png" href="./assets/favicon.png">
@@ -13,34 +13,63 @@
   </head>
   <body>
 
-    <div class="score-board-container">
-      <div>Score:</div>
-      <div id="score">0</div>
-    </div>
+    <div class="left-pane">
 
-    <div class="canvas-container">
-      <canvas id="tetris" width="300" height="600"></canvas>
+      <div class="score-board-container">
+        <div>Score:</div>
+        <div id="score">0</div>
+      </div>
 
-      <div class="footer-container">
-        <a href="https://www.linkedin.com/in/raf-garcia-engr/">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-
-        <a href="https://github.com/rafgarciaa">
-          <i class="fab fa-github"></i>
-        </a>
+      <div class="next-piece-container">
+        <div>Next Piece:</div>
+        <div id="next-piece">Render next piece here please!</div>
       </div>
 
     </div>
 
-    <div class="next-piece-container">
-      <label>Instructions:</label>
-      <ul>
-        <li>→ to move right</li>
-        <li>← to move left</li>
-        <li>s / d to rotate</li>
-        <li>↓ to drop the tile</li>
-      </ul>
+    <div class="mid-pane">
+      <div class="canvas-container">
+        <canvas id="tetris" width="300" height="600"></canvas>
+      </div>
+
+      <a href="https://rafgarcia.io">
+        <div class="footer-container">
+          <p>Made by Rafael Garcia</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="right-pane">
+      <div class="instructions-container">
+        <label>Instructions:</label>
+        <ul>
+          <li>→ to move right</li>
+          <li>← to move left</li>
+          <li>s / d to rotate</li>
+          <li>↓ to drop the tile</li>
+        </ul>
+      </div>
+
+      <div class="links-container">
+        <div class="link-item github">
+          <a href="https://github.com/rafgarciaa">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+
+        <div class="link-item linkedin">
+          <a href="https://www.linkedin.com/in/raf-garcia-engr/">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+
+        <div class="link-item portfolio">
+          <a href="https://rafgarcia.io">
+            <i class="fas fa-user"></i>
+          </a>
+        </div>
+      </div>
+
     </div>
 
     <script src="./assets/bundle.js"></script>

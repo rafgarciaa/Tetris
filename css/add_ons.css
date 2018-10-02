@@ -1,12 +1,4 @@
-.score-board-container {
-  margin-right: 50px;
-  border: 5px solid #949494;
-  border-radius: 5px;
-  width: 200px;
-  height: 80px;
-  margin-top: 185px;
-}
-
+/* MAIN */
 div {
   color: white;
   text-align: center;
@@ -19,38 +11,113 @@ li {
   list-style: none;
 }
 
-.footer-container {
-  background-color: white;
-  margin: 0 auto;
-  width: 200px;
-  height: 50px;
-  border: 1px solid black;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.footer-container > a > i {
-  margin-top: 10px;
-  font-size: 30px;
+p {
   color: black;
-  cursor: pointer;
+  text-align: center;
+  line-height: 55px;
+  text-transform: none;
+  font-size: 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
 }
 
-.footer-container > a > i:hover {
-  color: red;
+p:hover {
+  line-height: 65px;
+  color:
 }
 
-.next-piece-container {
-  margin-left: 50px;
+/* LEFT PANE START */
+.left-pane {
+  margin-right: 50px;
+  margin-top: 185px;
+}
+
+.score-board-container {
   border: 5px solid #949494;
   border-radius: 5px;
   width: 200px;
-  height: 200px;
-  margin-top: 185px;
+  height: 80px;
 }
 
 #score {
   font-weight: bold;
   font-size: 22px;
 }
+
+.next-piece-container {
+  border: 5px solid #949494;
+  border-radius: 5px;
+  width: 200px;
+  height: 150px;
+  margin-top: 50px;
+}
+/* LEFT PANE END */
+
+
+
+/* FOOTER START */
+.footer-container {
+  background-color: white;
+  margin: 20px auto;
+  width: 270px;
+  height: 50px;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+.footer-container:hover {
+  width: 280px;
+  height: 60px;
+  background-color: #99cbee;
+}
+/* FOOTER END */
+
+
+
+/* RIGHT PANE START */
+.right-pane {
+  margin-left: 50px;
+  margin-top: 185px;
+}
+
+
+.instructions-container {
+  border: 5px solid #949494;
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+}
+
+.links-container {
+  border: 5px solid #949494;
+  border-radius: 20px;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 100px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.link-item {
+  font-size: 40px;
+  margin: 8px;
+}
+
+.link-item:hover {
+  font-size: 48px;
+}
+
+.link-item.github:hover {
+  color: #35428A;
+}
+
+.link-item.linkedin:hover {
+  color: #007bff;
+}
+
+.link-item.portfolio:hover {
+  color: red;
+}
+/* RIGHT PANE END */
