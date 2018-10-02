@@ -2,11 +2,13 @@ import Player from './player.js';
 import Piece from './piece.js';
 
 export default class Board {
-  constructor(width, height, ctx) {
+  constructor(width, height, ctx, nextPieceCtx) {
     this.width = width;
     this.height = height;
     this.ctx = ctx;
+    this.nextPieceCtx = nextPieceCtx;
     this.grid = [];
+    this.nextPieceGrid = [];
 
     this.colors = [
       null,
@@ -70,23 +72,27 @@ export default class Board {
     if (this.collide()) {
       this.grid.forEach( row => row.fill(0));
       this.player.score = 0;
-      // this.updateScore();
     }
     this.gridSweep();
   }
 
-  clearBoard() {
+  clearBoardGrid() {
     this.ctx.fillStyle = 'black';
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
 
-  draw() {
-    this.clearBoard();
-    this.drawMatrix(this.grid, { x: 0, y: 0 });
-    this.drawMatrix(this.piece, this.player.pos);
+  clearNextPiece() {
+    this.nextPieceCtx.clearRect(0, 0, 200, 140);
   }
 
-  // draws either a single piece or the actual grid
+  draw() {
+    this.clearBoardGrid();
+    this.drawMatrix(this.grid, { x: 0, y: 0 });
+    this.drawMatrix(this.piece, this.player.pos);
+    this.drawNextPiece(this.nextPiece);
+  }
+
+  // draws either a single piece or the actual board grid
   drawMatrix(matrix, offset) {
     matrix.forEach( (row, y) => {
       row.forEach( (value, x) => {
@@ -95,6 +101,20 @@ export default class Board {
           let imageTag = document.createElement('img');
           imageTag.src = this.colors[value];
           this.ctx.drawImage(imageTag, x + offset.x , y + offset.y , 1, 1);
+
+        }
+      });
+    });
+  }
+
+  drawNextPiece() {
+    this.nextPiece.forEach( (row, y) => {
+      row.forEach( (value, x) => {
+        if ( value !== 0) {
+
+          let imageTag = document.createElement('img');
+          imageTag.src = this.colors[value];
+          this.nextPieceCtx.drawImage(imageTag, x + 2, y, 1, 1);
 
         }
       });
@@ -139,8 +159,9 @@ export default class Board {
       });
     });
 
-    this.player.createNextPiece();
-    this.piece = this.player.nextPiece;
+    this.updateNextPiece();
+    this.clearNextPiece();
+    this.drawNextPiece();
   }
 
   rotatePiece(dir) {
@@ -170,6 +191,11 @@ export default class Board {
     this.draw();
     this.updateScore();
     requestAnimationFrame(this.updateBoard);
+  }
+
+  updateNextPiece() {
+    this.piece = this.nextPiece;
+    this.nextPiece = new Piece().generatePiece();
   }
 
   updateScore() {

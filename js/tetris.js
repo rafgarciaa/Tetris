@@ -9,12 +9,15 @@ window.addEventListener("keydown", function(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
   const boardCanvas = document.getElementById('tetris');
-  const nextPieceCanvas = document.getElementById('next-piece');
   const boardCtx = boardCanvas.getContext('2d');
   boardCtx.scale(30, 30);
 
+  const nextPieceCanvas = document.getElementById('next-piece');
+  const nextPieceCtx = nextPieceCanvas.getContext('2d');
+  nextPieceCtx.scale(30, 30);
+
   let gameRun = false;
-  let board = new Board(boardCanvas.width, boardCanvas.height, boardCtx);
+  let board = new Board(boardCanvas.width, boardCanvas.height, boardCtx, nextPieceCtx);
 
   boardCtx.font = "1px serif";
   boardCtx.fillStyle = "white";
@@ -24,6 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     (boardCanvas.width/30) / 2,
     (boardCanvas.width/30) / 2
   );
+
+  // nextPieceCtx.font = "1px serif";
+  // nextPieceCtx.fillStyle = "white";
+  // nextPieceCtx.textAlign = "center";
+  // nextPieceCtx.fillText(
+  //   'Next Piece here',
+  //   (nextPieceCanvas.width/20) / 2,
+  //   (nextPieceCanvas.width/20) / 2
+  // );
+
   // board background
   $l('#tetris').attr(
     'style',
@@ -31,10 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
   );
 
   // next piece background
-  $l('#next-piece').attr(
-    'style',
-    "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
-  );
+  // $l('#next-piece').attr(
+  //   'style',
+  //   "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
+  // );
 
   document.addEventListener('keydown', e => {
     if (e.keyCode === 13 && !gameRun) {
@@ -44,6 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
         board.updateBoard(); // re-renders the grid
         board.updateScore();
       }
+
+      console.table(board.grid);
+      console.table(board.nextPieceGrid);
     }
   });
 

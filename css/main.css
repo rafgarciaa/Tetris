@@ -51,3 +51,7 @@ body {
 .canvas-container > input:hover {
   background-color: #e4f0f5;
 }
+
+canvas#next-piece {
+  margin: 1px;
+}

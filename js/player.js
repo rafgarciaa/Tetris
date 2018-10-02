@@ -9,9 +9,6 @@ export default class Player {
     this.pos = { x: 3, y: 0 };
     this.reset = this.reset.bind(this);
     this.score = 0;
-    this.nextPiece = new Piece().generatePiece();
-
-    this.createNextPiece = this.createNextPiece.bind(this);
   }
 
   drop() {
@@ -30,10 +27,6 @@ export default class Player {
     if (this.collide()) {
       this.pos.x -= dir;
     }
-  }
-
-  createNextPiece() {
-    this.nextPiece = new Piece().generatePiece();
   }
 
   rotate(piece, dir) {
