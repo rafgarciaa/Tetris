@@ -3,6 +3,7 @@ import Piece from './piece.js';
 
 export default class Board {
   constructor(width, height, ctx, nextPieceCtx) {
+    this.gameRun = false;
     this.width = width;
     this.height = height;
     this.ctx = ctx;

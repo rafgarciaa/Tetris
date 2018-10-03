@@ -1,4 +1,5 @@
 import Board from './board.js';
+import Sound from './sound.js';
 
 window.addEventListener("keydown", function(e) {
     // space, arrow keys and enter
@@ -16,8 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextPieceCtx = nextPieceCanvas.getContext('2d');
   nextPieceCtx.scale(35, 35);
 
-  let gameRun = false;
-  let board = new Board(boardCanvas.width, boardCanvas.height, boardCtx, nextPieceCtx);
+  let sound = new Sound('./assets/tetris_music.mp3');
+  let board = new Board(
+    boardCanvas.width,
+    boardCanvas.height,
+    boardCtx,
+    nextPieceCtx
+  );
 
   boardCtx.font = "1px serif";
   boardCtx.fillStyle = "white";
@@ -28,39 +34,52 @@ document.addEventListener('DOMContentLoaded', () => {
     (boardCanvas.width/30) / 2
   );
 
-  // nextPieceCtx.font = "1px serif";
-  // nextPieceCtx.fillStyle = "white";
-  // nextPieceCtx.textAlign = "center";
-  // nextPieceCtx.fillText(
-  //   'Next Piece here',
-  //   (nextPieceCanvas.width/20) / 2,
-  //   (nextPieceCanvas.width/20) / 2
-  // );
-
   // board background
-  $l('#tetris').attr(
+  $k('#tetris').attr(
     'style',
     "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
   );
 
   // next piece background
-  // $l('#next-piece').attr(
+  // $k('#next-piece').attr(
   //   'style',
   //   "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
   // );
 
-  document.addEventListener('keydown', e => {
-    if (e.keyCode === 13 && !gameRun) {
-      gameRun = true;
+  // sound button background
+  $k('#sound-btn').attr(
+    'style',
+    "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
+  );
 
-      if (gameRun) {
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === 13 && !board.gameRun) {
+      board.gameRun = true;
+
+      if (board.gameRun) {
         board.updateBoard(); // re-renders the grid
         board.updateScore();
+        sound.play();
+        sound.soundOn = true;
       }
 
       console.table(board.grid);
     }
   });
+
+  document.getElementById('sound-btn').onclick = function() {
+    if (!board.gameRun) {
+      sound.stop();
+    } else if (board.gameRun && !sound.soundOn) {
+      document.getElementById('sound-text').innerHTML = "Mute";
+      sound.play();
+      sound.soundOn = true;
+    } else if (board.gameRun && sound.soundOn) {
+      document.getElementById('sound-text').innerHTML = "Unmute";
+      sound.stop();
+      sound.soundOn = false;
+    }
+  };
 
   // for testing purposes only START
   window.board = board;
