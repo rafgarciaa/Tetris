@@ -35,7 +35,7 @@ This game will consist of a single screen with the game board in the middle, nex
 top score panes on the left, an instructions, links, and mute button pane on the right. Finally, my
 portfolio page will be
 
-![Wireframes](https://github.com/rafgarciaa/Tetris/tree/master/assets/tetris_wireframes.jpg)
+![Wireframes](https://github.com/rafgarciaa/Tetris/blob/master/assets/tetris_wireframes.jpg)
 
 ## Architecture and Technologies
 + [Javascript](https://www.javascript.com/) for game logic.
