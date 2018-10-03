@@ -139,8 +139,11 @@ export default class Board {
   }
 
   gridSweep() {
-    let rowCount = 1;
+    let rowCount = 0;
+    // outer iterates over the rows of the grid
+    // this outer loop starts at the bottom
     outer: for (let j = this.grid.length - 1; j > 0; j--) {
+      // this inner loop iterates over the columns
       for (let i = 0; i < this.grid[j].length; i++) {
         if (this.grid[j][i] === 0) {
           continue outer;
@@ -150,9 +153,7 @@ export default class Board {
       const row = this.grid.splice(j, 1)[0].fill(0);
       this.grid.unshift(row);
       j++;
-
-      this.player.score += rowCount * 100;
-      rowCount *= 2;
+      this.player.score += (rowCount + 1) * 100;
     }
   }
 

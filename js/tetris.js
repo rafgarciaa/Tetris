@@ -9,10 +9,12 @@ window.addEventListener("keydown", function(e) {
 }, false);
 
 document.addEventListener('DOMContentLoaded', () => {
+  // board canvas and ctx
   const boardCanvas = document.getElementById('tetris');
   const boardCtx = boardCanvas.getContext('2d');
   boardCtx.scale(30, 30);
 
+  // next piece canvas and ctx
   const nextPieceCanvas = document.getElementById('next-piece');
   const nextPieceCtx = nextPieceCanvas.getContext('2d');
   nextPieceCtx.scale(35, 35);
@@ -40,12 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
   );
 
-  // next piece background
-  // $k('#next-piece').attr(
-  //   'style',
-  //   "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
-  // );
-
   // sound button background
   $k('#sound-btn').attr(
     'style',
@@ -62,11 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         sound.play();
         sound.soundOn = true;
       }
-
-      console.table(board.grid);
     }
   });
 
+  // sound button
   document.getElementById('sound-btn').onclick = function() {
     if (!board.gameRun) {
       sound.stop();
@@ -81,12 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // for testing purposes only START
-  window.board = board;
-  window.player = board.player;
-  window.board.merge = board.merge;
-  // for testing purposes only END
-
+  // player moves
   document.addEventListener('keydown', e => { // listens for player input
     // e.preventDefault();
     if (e.keyCode === 37) { // left
@@ -102,4 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
       board.rotatePiece(1);
     }
   });
+
+
+
+  // for testing purposes only START
+  window.board = board;
+  window.player = board.player;
+  window.board.merge = board.merge;
+  // for testing purposes only END
 });
