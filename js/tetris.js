@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           if (board.gamePause && !board.gameFinished) {
             board.pause();
+            document.getElementById('sound-text').innerHTML = "Mute";
             sound.stop();
           }
 
@@ -94,17 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
   // player moves
   document.addEventListener('keydown', e => { // listens for player input
     // e.preventDefault();
-    if (e.keyCode === 37) { // left
-      board.player.move(-1);
-    } else if (e.keyCode === 39) { // right
-      board.player.move(1);
-    } else if (e.keyCode === 40) { // drop
-      board.player.drop();
-      board.dropCounter = 0;
-    } else if (e.keyCode === 83) {
-      board.rotatePiece(-1);
-    } else if (e.keyCode === 68) {
-      board.rotatePiece(1);
+    if (board.gameRun && !board.gamePause && !board.gameFinished) {
+      if (e.keyCode === 37) { // left
+        board.player.move(-1);
+      } else if (e.keyCode === 39) { // right
+        board.player.move(1);
+      } else if (e.keyCode === 40) { // (down) soft drop
+        board.player.drop();
+        board.dropCounter = 0;
+      } else if (e.keyCode === 83) { // (s) rotate counter-clockwise
+        board.rotatePiece(-1);
+      } else if (e.keyCode === 68) { // (d) rotate clockwise
+        board.rotatePiece(1);
+      } else if (e.keyCode === 32) { // hard drop
+        board.hardDrop();
+      }
     }
   });
 

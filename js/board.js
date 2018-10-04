@@ -131,12 +131,12 @@ export default class Board {
     });
   }
 
-  dropPiece(time) {
+  dropPiece(time, dropInterval) {
     const deltaTime = time - this.lastTime;
     this.lastTime = time;
 
     this.dropCounter += deltaTime;
-    if (this.dropCounter > this.dropInterval) {
+    if (this.dropCounter > dropInterval) {
       this.player.drop();
       this.dropCounter = 0;
     }
@@ -172,6 +172,10 @@ export default class Board {
     }
   }
 
+  hardDrop() {
+    this.dropInterval = 3;
+  }
+
   merge() {
     this.piece.forEach( (row, y) => {
       row.forEach( (value, x) => {
@@ -181,6 +185,8 @@ export default class Board {
       });
     });
 
+    this.dropInterval = 500;
+    // this.lastTime = 0;
     this.updateNextPiece();
     this.clearNextPiece();
     this.drawNextPiece();
@@ -219,7 +225,7 @@ export default class Board {
 
   updateBoard(time = 0) {
     if (this.gameRun && !this.gamePause) {
-      this.dropPiece(time);
+      this.dropPiece(time, this.dropInterval);
       this.draw();
       this.updateScore();
       requestAnimationFrame(this.updateBoard);
