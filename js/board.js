@@ -4,6 +4,8 @@ import Piece from './piece.js';
 export default class Board {
   constructor(width, height, ctx, nextPieceCtx) {
     this.gameRun = false;
+    this.gamePause = true;
+    this.gameFinished = false;
     this.width = width;
     this.height = height;
     this.ctx = ctx;
@@ -72,11 +74,13 @@ export default class Board {
     if (this.collide()) {
       this.grid.forEach( row => row.fill(0));
       this.player.score = 0;
+      // this.gameRun = false;
+      this.gameOver();
     }
     this.gridSweep();
   }
 
-  clearBoardGrid() {
+  clearBoard() {
     this.ctx.fillStyle = 'black';
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
@@ -86,7 +90,7 @@ export default class Board {
   }
 
   draw() {
-    this.clearBoardGrid();
+    this.clearBoard();
     this.drawMatrix(this.grid, { x: 0, y: 0 });
     this.drawMatrix(this.piece, this.player.pos);
     this.drawNextPiece(this.nextPiece);
@@ -138,6 +142,17 @@ export default class Board {
     }
   }
 
+  gameOver() {
+    this.gameRun = false;
+    this.gameFinished = true;
+    this.ctx.font = "1px serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText('Game Over.', 5, 5);
+    this.ctx.fillText('Press Enter to Retry.', 5, 8);
+    this.gamePause = false;
+  }
+
   gridSweep() {
     let rowCount = 0;
     // outer iterates over the rows of the grid
@@ -171,6 +186,15 @@ export default class Board {
     this.drawNextPiece();
   }
 
+  pause() {
+    this.ctx.font = "1px serif";
+    this.ctx.fillStyle = "white";
+    this.ctx.textAlign = "center";
+    this.ctx.fillText('Paused.', 5, 5);
+
+    this.ctx.fillText('Press Enter to Unpause.', 5, 8);
+  }
+
   rotatePiece(dir) {
     for (let j = 0; j < this.piece.length; j++) {
       for (let i = 0; i < j; i++) {
@@ -194,10 +218,14 @@ export default class Board {
   }
 
   updateBoard(time = 0) {
-    this.dropPiece(time);
-    this.draw();
-    this.updateScore();
-    requestAnimationFrame(this.updateBoard);
+    if (this.gameRun && !this.gamePause) {
+      this.dropPiece(time);
+      this.draw();
+      this.updateScore();
+      requestAnimationFrame(this.updateBoard);
+    } else if (!this.gameRun && !this.gamePause) {
+      this.gameOver();
+    }
   }
 
   updateNextPiece() {

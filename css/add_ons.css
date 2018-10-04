@@ -25,7 +25,7 @@ p {
 .left-pane {
   margin-right: 50px;
   margin-top: 100px;
-  height: 600px;
+  height: 610px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -80,7 +80,7 @@ p {
 .right-pane {
   margin-left: 50px;
   margin-top: 100px;
-  height: 600px;
+  height: 610px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -91,7 +91,7 @@ p {
   border: 5px solid #949494;
   border-radius: 5px;
   width: 200px;
-  height: 200px;
+  height: 250px;
 }
 
 .links-container {

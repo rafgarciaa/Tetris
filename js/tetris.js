@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nextPieceCtx
   );
 
+
   boardCtx.font = "1px serif";
   boardCtx.fillStyle = "white";
   boardCtx.textAlign = "center";
@@ -48,15 +49,29 @@ document.addEventListener('DOMContentLoaded', () => {
     "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
   );
 
+  // game start or game pause
   document.addEventListener('keydown', e => {
-    if (e.keyCode === 13 && !board.gameRun) {
+    if (e.keyCode === 13) {
       board.gameRun = true;
 
-      if (board.gameRun) {
+      if (board.gameFinished) {
+        board.gameFinished = false;
         board.updateBoard(); // re-renders the grid
-        board.updateScore();
         sound.play();
         sound.soundOn = true;
+      } else {
+        if (board.gameRun && !board.gameFinished) {
+          board.gamePause = !board.gamePause;
+          board.updateBoard(); // re-renders the grid
+          sound.play();
+          sound.soundOn = true;
+
+          if (board.gamePause && !board.gameFinished) {
+            board.pause();
+            sound.stop();
+          }
+
+        }
       }
     }
   });
@@ -65,11 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('sound-btn').onclick = function() {
     if (!board.gameRun) {
       sound.stop();
-    } else if (board.gameRun && !sound.soundOn) {
+    } else if (board.gameRun && !board.gamePause && !sound.soundOn) {
       document.getElementById('sound-text').innerHTML = "Mute";
       sound.play();
       sound.soundOn = true;
-    } else if (board.gameRun && sound.soundOn) {
+    } else if (board.gameRun && !board.gamePause && sound.soundOn) {
       document.getElementById('sound-text').innerHTML = "Unmute";
       sound.stop();
       sound.soundOn = false;
