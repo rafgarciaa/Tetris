@@ -21,6 +21,18 @@ export default class Player {
     }
   }
 
+  hardDrop() {
+    while (!this.collide()) {
+      this.pos.y++;
+    }
+
+    if (this.collide()) {
+      this.pos.y -= 1;
+    }
+    this.merge();
+    this.reset();
+  }
+
   move(dir) {
     this.pos.x += dir;
 

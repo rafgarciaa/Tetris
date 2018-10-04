@@ -172,10 +172,6 @@ export default class Board {
     }
   }
 
-  hardDrop() {
-    this.dropInterval = 3;
-  }
-
   merge() {
     this.piece.forEach( (row, y) => {
       row.forEach( (value, x) => {

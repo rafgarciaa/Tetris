@@ -138,8 +138,11 @@ p {
 }
 
 #sound-btn:hover {
+  font-size: 20px;
   cursor: pointer;
 }
+
+
 /* RIGHT PANE END */
 
 

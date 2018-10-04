@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (e.keyCode === 68) { // (d) rotate clockwise
         board.rotatePiece(1);
       } else if (e.keyCode === 32) { // hard drop
-        board.hardDrop();
+        board.player.hardDrop();
       }
     }
   });
