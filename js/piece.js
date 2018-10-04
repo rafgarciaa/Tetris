@@ -45,7 +45,7 @@ export default class Piece {
     const randPiece = pieces[
       Math.floor( pieces.length * Math.random() )
     ];
-    return this.pieces['I'];
+    return this.pieces[randPiece];
   }
 
   // end of class
