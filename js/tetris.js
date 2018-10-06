@@ -103,9 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (e.keyCode === 40) { // (down) soft drop
         board.player.drop();
         board.dropCounter = 0;
-      } else if (e.keyCode === 83) { // (s) rotate counter-clockwise
-        board.rotatePiece(-1);
-      } else if (e.keyCode === 68) { // (d) rotate clockwise
+      }
+      // else if (e.keyCode === 83) { // (s) rotate counter-clockwise
+      //   board.rotatePiece(-1);
+      // }
+      else if (e.keyCode === 38) { // (up) rotate clockwise
         board.rotatePiece(1);
       } else if (e.keyCode === 32) { // hard drop
         board.player.hardDrop();

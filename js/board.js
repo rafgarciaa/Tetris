@@ -63,6 +63,21 @@ export default class Board {
     return false;
   }
 
+  collideOutline(pos) {
+    const [p, o] = [this.piece, pos];
+
+    for (let y = 0; y < p.length; y++) {
+      for (let x = 0; x < p[y].length; x++) {
+        if (p[y][x] !== 0 &&
+            (this.grid[y + o.y] &&
+            this.grid[y + o.y][x + o.x]) !== 0) {
+              return true;
+        }
+      }
+    }
+    return false;
+  }
+
   createGrid(w, h) {
     while (h--) {
       this.grid.push(new Array(w).fill(0));
@@ -93,7 +108,9 @@ export default class Board {
     this.clearBoard();
     this.drawMatrix(this.grid, { x: 0, y: 0 });
     this.drawMatrix(this.piece, this.player.pos);
+    // console.log(this.player.pos);
     this.drawNextPiece(this.nextPiece);
+    this.drawOutline();
   }
 
   // draws either a single piece or the actual board grid
@@ -111,6 +128,28 @@ export default class Board {
     });
   }
 
+  drawOutline() {
+    for ( let y = 0; y < 20; y++ ) {
+      if (this.collideOutline( { x: this.player.pos.x, y: y } ) && y >= this.player.pos.y) {
+
+        this.piece.forEach( (row, j) => {
+          row.forEach( (value, i) => {
+            if (value !== 0) {
+
+              this.ctx.fillStyle = 'rgba(255,255,255,0.15)';
+              this.ctx.fillRect(i + this.player.pos.x, j + y - 1, 1, 1);
+
+            }
+          });
+        });
+
+      return false;
+      }
+    }
+
+
+  }
+
   drawNextPiece() {
     this.nextPiece.forEach( (row, y) => {
       row.forEach( (value, x) => {
@@ -122,7 +161,7 @@ export default class Board {
 
         }
 
-        if (value === 7) {
+        if (value === 7) { // this will account for the O piece to be rendered in the middle
           let imageTag = document.createElement('img');
           imageTag.src = this.colors[value];
           this.nextPieceCtx.drawImage(imageTag, x + 2, y + 0.5, 1, 1);
