@@ -5,42 +5,90 @@ This game is implemented with HTML5 Canvas API played via web browser.
 ## Functionality & MVP
 With this game, user's will be able to:
 
-+ Start, pause, and reset the game (pause and reset still under construction).
++ Start, pause, and reset the game.
 + Move pieces left and right.
 + Soft drop pieces.
 + Hard drop pieces. (under construction)
 + Toggle the background music
 
 ## Controls
-+ `enter` starts the game
++ `enter` starts the game and pauses the game
 + `→` (right arrow key) moves block to the right
 + `←` (left arrow key) moves block to the left
-+ `s` (s key) rotates the block counter-clockwise
-+ `d` (d key) rotates the block clockwise
-+ `↓` (down arrow key) soft drops the tile
-+ `spacebar` hard drops the tile
-+ `p` pauses the game
++ `↓` (down arrow key) soft drops the piece
++ `↑` (up arrow key) rotates the piece
++ `spacebar` hard drops the piece
 
-## Code Snippets
-Code logic implemented here
-
-### Board Creation
-Code logic implemented here
-
-### Piece Rotation
-Code logic implemented here
-
-## Wireframes
-This game will consist of a single screen with the game board in the middle, next piece, score and
-top score panes on the left, an instructions, links, and mute button pane on the right. Finally, my
-portfolio page will be
-
-![Wireframes](https://github.com/rafgarciaa/Tetris/blob/master/assets/tetris_wireframes.jpg)
-
-## Architecture and Technologies
+## Implementation
 + [Javascript](https://www.javascript.com/) for game logic.
 + [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) for rendering.
 
+### Board Creation
+The board is a 2-dimensional array that consists a fixed width and height. In this case 10 x 20,
+which is instantiated in the board class.
+
+```
+this.createGrid(10, 20);
+```
+
+```
+createGrid(w, h) {
+  while (h--) {
+    this.grid.push(new Array(w).fill(0));
+  }
+  return this.grid;
+}
+```
+
+The board can be represented as a table that looks like this:
+
+![Board](https://github.com/rafgarciaa/Tetris/blob/master/assets/board.png)
+
+Empty slots are represented with a 0 and `merged` pieces represent a value (1 - 7) depending which
+kind of piece it is.
+
+### Piece Rotation
+Each piece is represented using a matrix. This is how the T-piece is represented:
+
+![Piece](https://github.com/rafgarciaa/Tetris/blob/master/assets/piece.png)
+
+The rotatePiece function takes in a direction (1) when the `↑` (up arrow key) is pressed.
+This rotates the piece clockwise.
+
+```
+rotatePiece(dir) {
+  for (let j = 0; j < this.piece.length; j++) {
+    for (let i = 0; i < j; i++) {
+      [
+        this.piece[i][j],
+        this.piece[j][i],
+      ] = [
+        this.piece[j][i],
+        this.piece[i][j],
+      ];
+    }
+  }
+
+  if (dir > 0) {
+    this.piece.forEach( row => row.reverse() );
+  } else {
+    this.piece.reverse();
+  }
+
+  this.player.rotate(this.piece, dir);
+}
+```
+
+The code representation above can be visually represented as follows:
+![Piece Rotation](https://github.com/rafgarciaa/Tetris/blob/master/assets/rotate.gif)
+
+
+## Wireframes
+This game consist a single screen with the game board in the middle, next piece, score and
+top score panes on the left, an instructions, links, and mute button pane on the right. Finally,
+my portfolio page at the bottom of the canvas.
+
+![Wireframes](https://github.com/rafgarciaa/Tetris/blob/master/assets/tetris_wireframes.jpg)
 
 ## Bonus Features
 + High Scores utilizing Google Firebase API

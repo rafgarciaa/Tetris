@@ -29,12 +29,9 @@ export default class Board {
 
     this.collide = this.collide.bind(this);
     this.clearGrid = this.clearGrid.bind(this);
-    // this.draw = this.draw.bind(this);
-    // this.drawMatrix = this.drawMatrix.bind(this);
     this.merge = this.merge.bind(this);
     this.rotatePiece = this.rotatePiece.bind(this);
     this.updateBoard = this.updateBoard.bind(this);
-    // this.updateScore = this.updateScore.bind(this);
 
     this.player = new Player(
         this.collide,
@@ -47,23 +44,8 @@ export default class Board {
     this.nextPiece = new Piece().generatePiece();
     this.createGrid(10, 20);
   }
-
-  collide() {
-    const [p, o] = [this.piece, this.player.pos];
-
-    for (let y = 0; y < p.length; y++) {
-      for (let x = 0; x < p[y].length; x++) {
-        if (p[y][x] !== 0 &&
-            (this.grid[y + o.y] &&
-            this.grid[y + o.y][x + o.x]) !== 0) {
-              return true;
-        }
-      }
-    }
-    return false;
-  }
-
-  collideOutline(pos) {
+//
+  collide(pos) {
     const [p, o] = [this.piece, pos];
 
     for (let y = 0; y < p.length; y++) {
@@ -86,10 +68,9 @@ export default class Board {
   }
 
   clearGrid() {
-    if (this.collide()) {
+    if (this.collide( this.player.pos )) {
       this.grid.forEach( row => row.fill(0));
       this.player.score = 0;
-      // this.gameRun = false;
       this.gameOver();
     }
     this.gridSweep();
@@ -108,7 +89,6 @@ export default class Board {
     this.clearBoard();
     this.drawMatrix(this.grid, { x: 0, y: 0 });
     this.drawMatrix(this.piece, this.player.pos);
-    // console.log(this.player.pos);
     this.drawNextPiece(this.nextPiece);
     this.drawOutline();
   }
@@ -129,8 +109,9 @@ export default class Board {
   }
 
   drawOutline() {
+    // ghost piece logic
     for ( let y = 0; y < 20; y++ ) {
-      if (this.collideOutline( { x: this.player.pos.x, y: y } ) && y >= this.player.pos.y) {
+      if (this.collide( { x: this.player.pos.x, y: y } ) && y >= this.player.pos.y) {
 
         this.piece.forEach( (row, j) => {
           row.forEach( (value, i) => {
@@ -146,8 +127,6 @@ export default class Board {
       return false;
       }
     }
-
-
   }
 
   drawNextPiece() {
@@ -182,6 +161,8 @@ export default class Board {
   }
 
   gameOver() {
+    this.clearBoard();
+    this.clearNextPiece();
     this.gameRun = false;
     this.gameFinished = true;
     this.ctx.font = "1px serif";
@@ -221,7 +202,6 @@ export default class Board {
     });
 
     this.dropInterval = 500;
-    // this.lastTime = 0;
     this.updateNextPiece();
     this.clearNextPiece();
     this.drawNextPiece();

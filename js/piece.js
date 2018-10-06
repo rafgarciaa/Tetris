@@ -1,6 +1,5 @@
 export default class Piece {
   constructor() {
-    // this.pieces = "TOLJISZ";
     this.pieces = {
       'T': [
         [0, 0, 0],

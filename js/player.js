@@ -14,7 +14,7 @@ export default class Player {
   drop() {
     this.pos.y++;
 
-    if (this.collide()) {
+    if (this.collide(this.pos)) {
       this.pos.y--;
       this.merge();
       this.reset();
@@ -22,11 +22,11 @@ export default class Player {
   }
 
   hardDrop() {
-    while (!this.collide()) {
+    while (!this.collide(this.pos)) {
       this.pos.y++;
     }
 
-    if (this.collide()) {
+    if (this.collide(this.pos)) {
       this.pos.y -= 1;
     }
     this.merge();
@@ -36,7 +36,7 @@ export default class Player {
   move(dir) {
     this.pos.x += dir;
 
-    if (this.collide()) {
+    if (this.collide(this.pos)) {
       this.pos.x -= dir;
     }
   }
@@ -44,7 +44,7 @@ export default class Player {
   rotate(piece, dir) {
     const pos = this.pos.x;
     let offset = 1;
-    while (this.collide()) {
+    while (this.collide(this.pos)) {
       this.pos.x += offset;
       offset = -(offset + (offset > 0 ? 1 : -1));
 
