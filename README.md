@@ -11,14 +11,6 @@ With this game, user's will be able to:
 + Hard drop pieces. (under construction)
 + Toggle the background music
 
-## Controls
-+ `enter` starts the game and pauses the game
-+ `→` (right arrow key) moves block to the right
-+ `←` (left arrow key) moves block to the left
-+ `↓` (down arrow key) soft drops the piece
-+ `↑` (up arrow key) rotates the piece
-+ `spacebar` hard drops the piece
-
 ## Implementation
 + [Javascript](https://www.javascript.com/) for game logic.
 + [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) for rendering.
