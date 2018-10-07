@@ -31,7 +31,6 @@ export default class Board {
     this.clearGrid = this.clearGrid.bind(this);
     this.merge = this.merge.bind(this);
     this.rotatePiece = this.rotatePiece.bind(this);
-    this.updateBoard = this.updateBoard.bind(this);
 
     this.player = new Player(
         this.collide,

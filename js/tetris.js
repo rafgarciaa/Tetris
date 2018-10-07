@@ -110,10 +110,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
-
-  // for testing purposes only START
-  window.board = board;
-  window.player = board.player;
-  window.board.merge = board.merge;
-  // for testing purposes only END
 });
