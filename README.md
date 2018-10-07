@@ -32,12 +32,16 @@ createGrid(w, h) {
 }
 ```
 
-The board can be represented as a table that looks like this:
+The board visually looks like this:
 
-![Board](https://github.com/rafgarciaa/Tetris/blob/master/assets/board.png)
+In a table:                                                                 | In the actual canvas:
+:------------------------------------------------------------------------- :|:---------------------------------------------------------------------------------------:
+![Board](https://github.com/rafgarciaa/Tetris/blob/master/assets/board.png) |  ![Tetris View](https://github.com/rafgarciaa/Tetris/blob/master/assets/tetris_view.png)
 
 Empty slots are represented with a 0 and `merged` pieces represent a value (1 - 7) depending which
 kind of piece it is.
+
+"`Merged`" pieces are static pieces that are not moving. If you look closely, the dropping I piece on the right has not been "`merged`" onto the board yet.
 
 ### Piece Rotation
 Each piece is represented using a matrix. This is how the T-piece is represented:
