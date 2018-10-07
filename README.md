@@ -44,9 +44,11 @@ kind of piece it is.
 "`Merged`" pieces are static pieces that are not moving. If you look closely, the dropping I piece on the right has not been "`merged`" onto the board yet.
 
 ### Piece Rotation
-Each piece is represented using a matrix. This is how the T-piece is represented:
+Each piece is represented using a matrix. This is how the T-piece looks like visually:
 
-![Piece](https://github.com/rafgarciaa/Tetris/blob/master/assets/piece.png)
+| As a table:                                                                  | In the actual canvas:                                                                |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+![T-Piece](https://github.com/rafgarciaa/Tetris/blob/master/assets/piece.png)  | ![T-Piece View](https://github.com/rafgarciaa/Tetris/blob/master/assets/t_piece.png) |
 
 The rotatePiece function takes in a direction (1) when the `↑` (up arrow key) is pressed.
 This rotates the piece clockwise.
