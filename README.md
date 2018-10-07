@@ -34,8 +34,8 @@ createGrid(w, h) {
 
 The board visually looks like this:
 
-Solarized dark                                                              | Solarized Ocean
-:------------------------------------------------------------------------- :|:----------------------------------------------------------------------------------------:
+| As a table:                                                               | In the actual canvas:                                                                  |
+| ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 ![Board](https://github.com/rafgarciaa/Tetris/blob/master/assets/board.png) |  ![Tetris View](https://github.com/rafgarciaa/Tetris/blob/master/assets/tetris_view.png)
 
 Empty slots are represented with a 0 and `merged` pieces represent a value (1 - 7) depending which
