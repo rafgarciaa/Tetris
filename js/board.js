@@ -169,7 +169,8 @@ export default class Board {
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
     this.ctx.fillText('Game Over.', 5, 5);
-    this.ctx.fillText('Press Enter to Retry.', 5, 8);
+    this.ctx.fillText('Press Enter to Retry.', 5, 7);
+    this.ctx.fillText(`Your Score: ${this.player.score}`, 5, 9);
     this.gamePause = false;
   }
 
@@ -208,6 +209,7 @@ export default class Board {
   }
 
   pause() {
+    this.clearBoard();
     this.ctx.font = "1px serif";
     this.ctx.fillStyle = "white";
     this.ctx.textAlign = "center";
