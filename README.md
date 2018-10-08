@@ -2,13 +2,15 @@
 A remake of the classic tile-matching puzzle video game. This game is implemented with HTML5 Canvas API played via web browser.
 
 ## Functionality & MVP
-With this game, user's will be able to:
+With this game, users are be able to:
 
 + Start, pause, and reset the game.
 + Move pieces left and right.
++ Rotate pieces.
 + Soft drop pieces.
-+ Hard drop pieces. (under construction)
-+ Toggle the background music
++ Hard drop pieces.
++ Toggle the background music.
++ Keep track of their score.
 
 ## Implementation
 + [Javascript](https://www.javascript.com/) for game logic.
@@ -78,14 +80,6 @@ rotatePiece(dir) {
 
 The code representation above can be visually represented as follows:
 ![Piece Rotation](https://github.com/rafgarciaa/Tetris/blob/master/assets/rotate.gif)
-
-
-## Wireframes
-This game consist a single screen with the game board in the middle, next piece, score and
-top score panes on the left, an instructions, links, and mute button pane on the right. Finally,
-my portfolio page at the bottom of the canvas.
-
-![Wireframes](https://github.com/rafgarciaa/Tetris/blob/master/assets/tetris_wireframes.jpg)
 
 ## Bonus Features
 + High Scores utilizing Google Firebase API
