@@ -1,6 +1,5 @@
 # [Tetris](http://tetris.rafgarcia.io)
-A remake of the classic tile-matching puzzle video game which I am sure everyone is familiar with.
-This game is implemented with HTML5 Canvas API played via web browser.
+A remake of the classic tile-matching puzzle video game. This game is implemented with HTML5 Canvas API played via web browser.
 
 ## Functionality & MVP
 With this game, user's will be able to:
@@ -19,11 +18,11 @@ With this game, user's will be able to:
 The board is a 2-dimensional array that consists a fixed width and height. In this case 10 x 20,
 which is instantiated in the board class.
 
-```
+```javascript
 this.createGrid(10, 20);
 ```
 
-```
+```javascript
 createGrid(w, h) {
   while (h--) {
     this.grid.push(new Array(w).fill(0));
@@ -53,7 +52,7 @@ Each piece is represented using a matrix. This is how the T-piece looks like vis
 The rotatePiece function takes in a direction (1) when the `↑` (up arrow key) is pressed.
 This rotates the piece clockwise.
 
-```
+```javascript
 rotatePiece(dir) {
   for (let j = 0; j < this.piece.length; j++) {
     for (let i = 0; i < j; i++) {
