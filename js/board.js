@@ -70,7 +70,6 @@ export default class Board {
   clearGrid() {
     if (this.collide( this.player.pos )) {
       this.grid.forEach( row => row.fill(0));
-      this.player.score = 0;
       this.gameOver();
     }
     this.gridSweep();
@@ -248,6 +247,7 @@ export default class Board {
       requestAnimationFrame(this.updateBoard);
     } else if (!this.gameRun && !this.gamePause) {
       this.gameOver();
+      this.player.score = 0;
     }
   }
 
