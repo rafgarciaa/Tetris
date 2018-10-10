@@ -15,6 +15,7 @@ With this game, users are be able to:
 ## Implementation
 + [Javascript](https://www.javascript.com/) for game logic.
 + [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) for rendering.
++ [KingDOM](https://github.com/rafgarciaa/kingDOM) for DOM manipulation.
 
 ### Board Creation
 The board is a 2-dimensional array that consists a fixed width and height. In this case 10 x 20,
@@ -25,9 +26,9 @@ this.createGrid(10, 20);
 ```
 
 ```javascript
-createGrid(w, h) {
-  while (h--) {
-    this.grid.push(new Array(w).fill(0));
+createGrid(width, height) {
+  while (height--) {
+    this.grid.push(new Array(width).fill(0));
   }
 }
 ```

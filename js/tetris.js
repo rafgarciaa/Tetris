@@ -27,6 +27,41 @@ document.addEventListener('DOMContentLoaded', () => {
     nextPieceCtx
   );
 
+  const getScores = () => {
+    let highScores = [];
+    window.highScores = highScores;
+    let scores = firebase.database().ref('scores/')
+      .orderByChild('score').limitToLast(5);
+
+    const _scoreCompare = (a, b) => {
+      if (a.score < b.score) return 1;
+      if (a.score > b.score) return -1;
+      return 0;
+    };
+
+    scores.on('child_added', snapshot => {
+      highScores.push(snapshot.val());
+      highScores.sort(_scoreCompare);
+
+      if (highScores.length >= 5) {
+        renderScores(highScores);
+      }
+    });
+
+
+  };
+
+  const renderScores = (highScores) => {
+    $k('#high-scores').empty();
+    for (let i = 0; i < 5; i++) {
+      $k('#high-scores').append(
+        `<div class='score-item'>
+        ${i + 1}. ${highScores[i].name} ${highScores[i].score}
+        </div>`
+      );
+    }
+  };
+
   const gameStart = () => {
 
     boardCtx.font = "1px serif";
@@ -51,6 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   };
 
+
+  getScores();
   gameStart();
 
   // game start or game pause

@@ -60,9 +60,9 @@ export default class Board {
     return false;
   }
 
-  createGrid(w, h) {
-    while (h--) {
-      this.grid.push(new Array(w).fill(0));
+  createGrid(width, height) {
+    while (height--) {
+      this.grid.push(new Array(width).fill(0));
     }
   }
 
