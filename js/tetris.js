@@ -27,27 +27,31 @@ document.addEventListener('DOMContentLoaded', () => {
     nextPieceCtx
   );
 
+  const gameStart = () => {
 
-  boardCtx.font = "1px serif";
-  boardCtx.fillStyle = "white";
-  boardCtx.textAlign = "center";
-  boardCtx.fillText(
-    'Press Enter to Play',
-    (boardCanvas.width/30) / 2,
-    (boardCanvas.width/30) / 2
-  );
+    boardCtx.font = "1px serif";
+    boardCtx.fillStyle = "white";
+    boardCtx.textAlign = "center";
+    boardCtx.fillText(
+      'Press Enter to Play',
+      (boardCanvas.width/30) / 2,
+      (boardCanvas.width/30) / 2
+    );
 
-  // board background
-  $k('#tetris').attr(
-    'style',
-    "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
-  );
+    // board background
+    $k('#tetris').attr(
+      'style',
+      "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
+    );
 
-  // sound button background
-  $k('#sound-btn').attr(
-    'style',
-    "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
-  );
+    // sound button background
+    $k('#sound-btn').attr(
+      'style',
+      "background: url('./assets/stars.gif') no-repeat; background-size: cover;"
+    );
+  };
+
+  gameStart();
 
   // game start or game pause
   document.addEventListener('keydown', e => {
@@ -109,5 +113,26 @@ document.addEventListener('DOMContentLoaded', () => {
         board.player.hardDrop();
       }
     }
+  });
+
+  let database = firebase.database();
+  const saveScore = (score) => {
+    const newScore = {};
+    newScore.name = document.getElementById('score-input').value;
+    newScore.score = score;
+    if (newScore.name.length === 0) newScore.name = '?';
+    database.ref('scores/').push(newScore);
+  };
+
+  $k('#score-submit-btn').on('click', (e) => {
+    e.preventDefault();
+    saveScore(board.player.score);
+    board.player.score = 0;
+    boardCtx.clearRect(0, 0, boardCanvas.width, boardCanvas.height);
+    $k('#scores-form').attr('style', 'display: none;');
+    board.gameRun = false;
+    board.gamePause = true;
+    board.gameFinished = false;
+    gameStart();
   });
 });

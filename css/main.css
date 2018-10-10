@@ -35,6 +35,7 @@ body {
 
 .mid-pane {
   margin-top: 100px;
+  position: relative;
 }
 
 .canvas-container {
@@ -61,4 +62,33 @@ body {
 
 canvas#next-piece {
   margin: 1px;
+}
+
+#scores-form {
+  z-index: 1;
+  position: absolute;
+  top: 300px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  display: none;
+}
+
+#score-input {
+  border: 5px solid #949494;
+  border-radius: 5px;
+}
+
+#score-submit-btn {
+  border: 5px solid #949494;
+  border-radius: 5px;
+  width: 100px;
+  height: 35px;
+  margin: 0 auto;
+}
+
+#score-submit-btn:hover {
+  font-size: 10px;
+  cursor: pointer;
 }

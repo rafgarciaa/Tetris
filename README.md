@@ -29,7 +29,6 @@ createGrid(w, h) {
   while (h--) {
     this.grid.push(new Array(w).fill(0));
   }
-  return this.grid;
 }
 ```
 

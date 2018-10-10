@@ -64,7 +64,6 @@ export default class Board {
     while (h--) {
       this.grid.push(new Array(w).fill(0));
     }
-    return this.grid;
   }
 
   clearGrid() {
@@ -170,6 +169,9 @@ export default class Board {
     this.ctx.fillText('Game Over.', 5, 5);
     this.ctx.fillText('Press Enter to Retry.', 5, 7);
     this.ctx.fillText(`Your Score: ${this.player.score}`, 5, 9);
+
+    $k('#scores-form').attr('style', 'display: block;');
+
     this.gamePause = false;
   }
 
@@ -247,7 +249,6 @@ export default class Board {
       requestAnimationFrame(this.updateBoard);
     } else if (!this.gameRun && !this.gamePause) {
       this.gameOver();
-      this.player.score = 0;
     }
   }
 

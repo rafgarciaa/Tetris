@@ -3,6 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title>Tetris!</title>
+    <script src="https://www.gstatic.com/firebasejs/5.5.3/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      let config = {
+        apiKey: "AIzaSyBnfy8BavTccCs1lgYgImyXMLxtVnjums4",
+        authDomain: "tetris-rafg.firebaseapp.com",
+        databaseURL: "https://tetris-rafg.firebaseio.com",
+        projectId: "tetris-rafg",
+        storageBucket: "",
+        messagingSenderId: "910830156081"
+      };
+      firebase.initializeApp(config);
+    </script>
+
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/add_ons.css">
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700" rel="stylesheet">
@@ -34,6 +48,11 @@
     </div>
 
     <div class="mid-pane">
+      <form id="scores-form">
+          <input id="score-input" placeholder="Enter Your Name" autoComplete="off" maxlength="10"/>
+          <button id="score-submit-btn">Enter Score</button>
+      </form>
+
       <div class="canvas-container">
         <canvas id="tetris" width="300" height="600"></canvas>
       </div>
