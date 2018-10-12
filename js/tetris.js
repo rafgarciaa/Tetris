@@ -94,12 +94,14 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', e => {
     if (e.keyCode === 13) {
       board.gameRun = true;
+      $k('#scores-form').attr('style', 'display: none;');
 
       if (board.gameFinished) {
         board.gameFinished = false;
         board.updateBoard(); // re-renders the grid
         sound.play();
         sound.soundOn = true;
+
       } else {
         if (board.gameRun && !board.gameFinished) {
           board.gamePause = !board.gamePause;
