@@ -1,4 +1,4 @@
-# [Tetris](http://tetris.rafgarcia.io)
+# [Tetris!](http://tetris.rafgarcia.io)
 A remake of the classic tile-matching puzzle video game. This game is implemented with HTML5 Canvas API played via web browser.
 
 ## Functionality & MVP
