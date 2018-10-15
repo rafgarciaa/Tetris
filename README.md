@@ -1,6 +1,8 @@
 # [Tetris!](http://tetris.rafgarcia.io)
 A remake of the classic tile-matching puzzle video game. This game is implemented with HTML5 Canvas API played via web browser.
 
+![Game Screen](https://github.com/rafgarciaa/Tetris/blob/master/assets/game_screen.png)
+
 ## Functionality & MVP
 With this game, users are be able to:
 
@@ -11,11 +13,13 @@ With this game, users are be able to:
 + Hard drop pieces.
 + Toggle the background music.
 + Keep track of their score.
++ Keep track of high scores.
 
 ## Implementation
 + [Javascript](https://www.javascript.com/) for game logic.
 + [HTML5 Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) for rendering.
-+ [KingDOM](https://github.com/rafgarciaa/kingDOM) for DOM manipulation.
++ [KingDOM](https://github.com/rafgarciaa/kingDOM) for (some) DOM manipulation.
++ [Google Firebase](https://firebase.google.com) for storing names and their corresponding high scores.
 
 ### Board Creation
 The board is a 2-dimensional array that consists a fixed width and height. In this case 10 x 20,
@@ -42,7 +46,7 @@ The board visually looks like this:
 Empty slots are represented with a 0 and `merged` pieces represent a value (1 - 7) depending which
 kind of piece it is.
 
-"`Merged`" pieces are static pieces that are not moving. If you look closely, the dropping I piece on the right has not been "`merged`" onto the board yet.
+`Merged` pieces are static pieces that are not moving. If you look closely, the dropping I piece on the right has not been `merged` onto the board yet.
 
 ### Piece Rotation
 Each piece is represented using a matrix. This is how the T-piece looks like visually:
@@ -80,6 +84,3 @@ rotatePiece(dir) {
 
 The code representation above can be visually represented as follows:
 ![Piece Rotation](https://github.com/rafgarciaa/Tetris/blob/master/assets/rotate.gif)
-
-## Bonus Features
-+ High Scores utilizing Google Firebase API
